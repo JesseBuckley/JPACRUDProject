@@ -1,5 +1,7 @@
 package com.skilldistillery.healthcare.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,6 +24,8 @@ public class HealthCareController {
 
 	@GetMapping(path = { "", "/", "home.do" })
 	public String index(Model model) {
+		List<HealthCare> health = healthDAO.findAllHealthCare();
+		model.addAttribute("healthCare", health);
 		return "home";
 	}
 
@@ -62,6 +66,20 @@ public class HealthCareController {
 		return "redirect:/healthCareDetails.do?id=" + id;
 	}
 
+	@GetMapping(path = "addHealthCare.do")
+	public String addPatient() {
+		return "addHealthCare";
+	}
+
+	@PostMapping(path = "addedComplete.do")
+	public ModelAndView addPatient(HealthCare health, Model model) {
+		ModelAndView mv = new ModelAndView();
+		healthDAO.createHealthCare(health);
+		
+		mv.setViewName("addedComplete");
+		return mv;
+	}
+
 	@RequestMapping(path = "deleteHealthCare.do", method = RequestMethod.GET)
 	public ModelAndView deleteHealthCare(@RequestParam("id") int id) {
 
@@ -73,14 +91,6 @@ public class HealthCareController {
 
 		mv.addObject("errorMessage", deleteMessage);
 		mv.setViewName("error");
-		return mv;
-
-	}
-
-	@RequestMapping(path = "addHealthCare.do", method = RequestMethod.GET)
-	public ModelAndView navigateToAddFilmPage() {
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("addHealthCare");
 		return mv;
 	}
 }

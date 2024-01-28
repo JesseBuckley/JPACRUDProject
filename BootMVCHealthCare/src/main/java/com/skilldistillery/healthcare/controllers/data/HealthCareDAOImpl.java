@@ -1,5 +1,7 @@
 package com.skilldistillery.healthcare.controllers.data;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.healthcare.entities.HealthCare;
@@ -34,7 +36,6 @@ public class HealthCareDAOImpl implements HealthCareDAO {
 	public HealthCare createHealthCare(HealthCare health) {
 
 		em.persist(health);
-
 		return health;
 	}
 
@@ -53,11 +54,17 @@ public class HealthCareDAOImpl implements HealthCareDAO {
 	@Override
 	public HealthCare updateHealthCare(HealthCare health) {
 		System.out.println("*************************DAO methods update**********************");
-		
+
 		em.merge(health);
 		em.flush();
 		return health;
-		}
-
 	}
 
+	@Override
+	public List<HealthCare> findAllHealthCare() {
+		String jpql = "SELECT H FROM HealthCare H";
+		List<HealthCare> health = em.createQuery(jpql, HealthCare.class).getResultList();
+		return health;
+	}
+
+}

@@ -8,12 +8,12 @@
     <title>Error</title>
 </head>
 <body>
-    <h2>Result of Health Care deletion:</h2>
+    <h2>Result of Health Care action:</h2>
     <c:if test="${errorMessage == true}">
-        <p>Record was deleted successfully</p>
+        <p>Record action was successful</p>
     </c:if>
     <c:if test="${errorMessage == false}">
-        <p>Record was not deleted</p>
+        <p>Record action was not successful</p>
     </c:if>
     <br>
     	<a href="home.do">Return to Home Page</a>

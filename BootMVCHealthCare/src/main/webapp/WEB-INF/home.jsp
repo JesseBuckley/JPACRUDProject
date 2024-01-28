@@ -19,5 +19,15 @@
 	<br>
 	<h2>Add New Health Care Record:</h2>
 	<a href="addHealthCare.do">Add Record</a>
+	
+	<div>
+	<br>
+	<c:forEach items="${healthCare}" var="healthCare">
+		<a href="healthCareDetails.do?id=${healthCare.id}">Display details for: ${healthCare.patientName}</a>
+		<br>
+	</c:forEach>
+	</div>
+	
+	
 </body>
 </html>
