@@ -17,7 +17,7 @@ public class HealthCareTest {
 	
 		private static EntityManagerFactory emf;
 		private EntityManager em;
-		private HealthCare lang;
+		private HealthCare health;
 		
 		
 		
@@ -34,19 +34,19 @@ public class HealthCareTest {
 		@BeforeEach
 		void setUp() throws Exception {
 		    em = emf.createEntityManager();
-		    lang = em.find(HealthCare.class, 2);
+		    health = em.find(HealthCare.class, 2);
 		}
 
 		@AfterEach
 		void tearDown() throws Exception {
-		   lang = null;
+		   health = null;
 			em.close();
 		}
 		
 		@Test
 		void Customer_entity_mapping() {
-			assertNotNull(lang);
-			assertEquals("Biggins", lang.getPatientName());
+			assertNotNull(health);
+			assertEquals("Requis Biggins", health.getPatientName());
 			}
 		
 	}

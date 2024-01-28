@@ -1,5 +1,6 @@
 package com.skilldistillery.healthcare.entities;
 
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 import jakarta.persistence.Column;
@@ -16,9 +17,54 @@ public class HealthCare {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
+
 	@Column(name = "patient_name")
 	private String patientName;
+
+	@Column(name = "medical_records")
+	private String medicalRecords;
+
+	@Column(name = "healthcare_providers")
+	private String healthcareProviders;
+
+	private LocalDateTime appointments;
+
+	private String prescriptions;
+
+	public HealthCare() {
+	}
+
+	public String getMedicalRecords() {
+		return medicalRecords;
+	}
+
+	public void setMedicalRecords(String medicalRecords) {
+		this.medicalRecords = medicalRecords;
+	}
+
+	public String getHealthcareProviders() {
+		return healthcareProviders;
+	}
+
+	public void setHealthcareProviders(String healthcareProviders) {
+		this.healthcareProviders = healthcareProviders;
+	}
+
+	public LocalDateTime getAppointments() {
+		return appointments;
+	}
+
+	public void setAppointments(LocalDateTime appointments) {
+		this.appointments = appointments;
+	}
+
+	public String getPrescriptions() {
+		return prescriptions;
+	}
+
+	public void setPrescriptions(String prescriptions) {
+		this.prescriptions = prescriptions;
+	}
 
 	public int getId() {
 		return id;
@@ -55,9 +101,9 @@ public class HealthCare {
 
 	@Override
 	public String toString() {
-		return "HealthCare [id=" + id + ", patientName=" + patientName + "]";
+		return "HealthCare [id=" + id + ", patientName=" + patientName + ", medicalRecords=" + medicalRecords
+				+ ", healthcareProviders=" + healthcareProviders + ", appointments=" + appointments + ", prescriptions="
+				+ prescriptions + "]";
 	}
-	
-	
-	
+
 }

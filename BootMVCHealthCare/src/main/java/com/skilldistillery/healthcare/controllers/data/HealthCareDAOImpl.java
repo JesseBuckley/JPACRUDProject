@@ -11,7 +11,16 @@ import jakarta.transaction.Transactional;
 @Service
 @Transactional
 public class HealthCareDAOImpl implements HealthCareDAO {
-	
+
+//	static {
+//		try {
+//			Class.forName("com.mysql.cj.jdbc.Driver");
+//		} catch (ClassNotFoundException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//	}
+
 	@PersistenceContext
 	private EntityManager em;
 
@@ -21,4 +30,34 @@ public class HealthCareDAOImpl implements HealthCareDAO {
 		return health;
 	}
 
-}
+	@Override
+	public HealthCare createHealthCare(HealthCare health) {
+
+		em.persist(health);
+
+		return health;
+	}
+
+	@Override
+	public boolean deleteHealthCare(HealthCare health) {
+
+		try {
+			em.remove(health);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+	@Override
+	public HealthCare updateHealthCare(HealthCare health) {
+		System.out.println("*************************DAO methods update**********************");
+		
+		em.merge(health);
+		em.flush();
+		return health;
+		}
+
+	}
+

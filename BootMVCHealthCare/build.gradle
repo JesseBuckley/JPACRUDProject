@@ -32,6 +32,9 @@ dependencies {
 	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper' 
 }
 
+tasks.withType(JavaCompile) {
+	options.compilerArgs << '-parameters'
+}
 tasks.named('test') {
 	useJUnitPlatform()
 }
