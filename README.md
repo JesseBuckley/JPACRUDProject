@@ -29,3 +29,6 @@ If you choose to select by ID choose #1 or #2 as they are the only rows present 
 -When you have lots of files and setups it's easy to become overwhelmed.
 
 -Overcoming those issues takes a break sometimes. 
+
+# Deployment
+http://44.222.56.254:8080/BootMVCHealthCare
